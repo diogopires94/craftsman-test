@@ -1,0 +1,10 @@
+C:\Repos\azure\Sportino\src\Backend\Services\Articles\Articles\SharedKernel\bin\Debug\netstandard2.1\SharedKernel.deps.json
+C:\Repos\azure\Sportino\src\Backend\Services\Articles\Articles\SharedKernel\bin\Debug\netstandard2.1\SharedKernel.dll
+C:\Repos\azure\Sportino\src\Backend\Services\Articles\Articles\SharedKernel\bin\Debug\netstandard2.1\SharedKernel.pdb
+C:\Repos\azure\Sportino\src\Backend\Services\Articles\Articles\SharedKernel\obj\Debug\netstandard2.1\SharedKernel.csproj.AssemblyReference.cache
+C:\Repos\azure\Sportino\src\Backend\Services\Articles\Articles\SharedKernel\obj\Debug\netstandard2.1\SharedKernel.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repos\azure\Sportino\src\Backend\Services\Articles\Articles\SharedKernel\obj\Debug\netstandard2.1\SharedKernel.AssemblyInfoInputs.cache
+C:\Repos\azure\Sportino\src\Backend\Services\Articles\Articles\SharedKernel\obj\Debug\netstandard2.1\SharedKernel.AssemblyInfo.cs
+C:\Repos\azure\Sportino\src\Backend\Services\Articles\Articles\SharedKernel\obj\Debug\netstandard2.1\SharedKernel.csproj.CoreCompileInputs.cache
+C:\Repos\azure\Sportino\src\Backend\Services\Articles\Articles\SharedKernel\obj\Debug\netstandard2.1\SharedKernel.dll
+C:\Repos\azure\Sportino\src\Backend\Services\Articles\Articles\SharedKernel\obj\Debug\netstandard2.1\SharedKernel.pdb

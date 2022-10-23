@@ -1,0 +1,81 @@
+pipeline {
+  agent any
+  environment {
+        dockerRegistry = 'registry.opaupratodaobra.com/sportino'
+        imageName = 'NTER.Articles'
+        projectPath = 'Articles/'
+        dockerCompose = 'src/'
+        k8sNamespaceDEV = 'sportino-dev'
+        k8sNamespaceTST = 'sportino-tst'
+        k8sNamespacePRD = 'sportino-prd'
+        k8sImagePullSecret = 'regcred'
+        version = "1.0.${BUILD_TIMESTAMP}${currentBuild.number}"
+  }
+  stages {
+
+      stage('Build and Push to Registry') {
+        steps {
+          withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'e8d3e344-dc1a-4c5f-a7f6-73e74eff216b', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+            checkout scm
+          }
+          sh 'git tag -a ${version} -m "version ${version}"' 
+          sh 'git push origin --tags'
+          sh 'docker build --tag ${dockerRegistry}/${imageName}:${version} ${projectPath}.'
+          sh 'docker push ${dockerRegistry}/${imageName}:${version}'
+        }
+      }
+      
+    stage('Deploy to Kubernetes - namespace sportino-dev') {
+      steps {
+        script{
+          try {
+            sh 'kubectl create namespace ${k8sNamespaceDEV}'
+          } catch (err) {
+            echo err.getMessage()
+          }
+        }
+         script{
+          try {
+            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'f98daeb0-f1cc-432f-ab51-3c9597c77228', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+              sh 'kubectl create secret docker-registry ${k8sImagePullSecret} --docker-server=${dockerRegistry} --docker-username=$USERNAME --docker-password=$PASSWORD --namespace ${k8sNamespaceDEV}'
+              }
+          } catch (err) {
+              echo err.getMessage()
+            }
+         }
+        sh 'sed s/:latest/:${version}/g deploy/k8s/deployment.yaml > deploy/k8s/deployment-final.yaml'
+        sh 'kubectl apply -f deploy/k8s/deployment-final.yaml --namespace ${k8sNamespaceDEV}'
+      }
+    }
+
+    stage('Deploy to TST?') {
+      steps {
+        input('Deploy to sportino-tst?')
+      }
+    }
+
+    stage('Deploy to Kubernetes - namespace sportino-tst') {
+      steps {
+        script{
+          try {
+            sh 'kubectl create namespace ${k8sNamespaceTST}'
+          } catch (err) {
+            echo err.getMessage()
+          }
+        }
+        script{
+          try {
+             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'f98daeb0-f1cc-432f-ab51-3c9597c77228', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+              sh 'kubectl create secret docker-registry ${k8sImagePullSecret} --docker-server=${dockerRegistry} --docker-username=$USERNAME --docker-password=$PASSWORD --namespace ${k8sNamespaceTST}'
+            }
+          } catch (err) {
+              echo err.getMessage()
+               }
+        }
+        sh 'kubectl apply -f deploy/k8s/deployment-final.yaml --namespace ${k8sNamespaceTST}'
+      }
+    }
+
+
+  }
+}

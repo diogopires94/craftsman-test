@@ -1,0 +1,44 @@
+version: '3.7'
+
+services:
+  articlesmanager-db:
+    image: postgres
+    restart: always
+    ports:
+      - '64637:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dev_articlesmanager
+    volumes:
+      - articlesmanager-data:/var/lib/postgresql/data
+
+  rmq-message-broker:
+    image: masstransit/rabbitmq
+    restart: always
+    ports:
+      - '64641:15672' # RabbitMQ Management UI
+      - '64640:5672' # RabbitMQ Broker
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+#    port mappings: https://www.jaegertracing.io/docs/1.32/getting-started/
+    ports:
+      - "5775:5775/udp"
+      - "6831:6831/udp"
+      - "6832:6832/udp"
+      - "5778:5778"
+      - "16686:16686"
+      - "14250:14250"
+      - "14268:14268"
+      - "14269:14269"
+      - "9411:9411"
+
+        
+volumes:
+  # compose volumes marker - do not delete
+  articlesmanager-data:

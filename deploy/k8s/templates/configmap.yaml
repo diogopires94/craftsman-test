@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-config
+data:  
+  appsettings.Production.json: |-
+    {
+      "AUTH_AUDIENCE": "{{ .Values.appSettings.auth_audience }}",
+      "AUTH_AUTHORITY": "{{ .Values.appSettings.auth_authority }}",
+      "AUTH_AUTHORIZATION_URL": "{{ .Values.appSettings.auth_authorization_url }}",
+      "AUTH_TOKEN_URL": "{{ .Values.appSettings.auth_token_url }}",
+      "AUTH_CLIENT_ID": "{{ .Values.appSettings.auth_client_id }}",
+      "AUTH_CLIENT_SECRET": "{{ .Values.appSettings.auth_client_secret }}",
+      "DB_CONNECTION_STRING": "{{ .Values.appSettings.db_connection_string }}",
+      "RMQ_HOST": "{{ .Values.appSettings.rmq_host }}",
+      "RMQ_VIRTUAL_HOST": "{{ .Values.appSettings.rmq_virtual_host }}",
+      "RMQ_USERNAME": "{{ .Values.appSettings.rmq_username }}",
+      "RMQ_PASSWORD": "{{ .Values.appSettings.rmq_password }}",
+      "RMQ_PORT": "{{ .Values.appSettings.rmq_port }}",
+      "JAEGER_HOST": "{{ .Values.appSettings.jaeger_host }}",
+      "JAEGER_SERVICENAME": "{{ .Values.appSettings.jaeger_service_name }}"
+    }

@@ -1,0 +1,37 @@
+replicaCount: 1
+image:
+  repository: harbor.com/test/backend-services-articles-api
+  tag: "1"
+service:
+  port: 80
+  type: ClusterIP
+hpa:
+  enabled: false
+  minReplicas: 3
+  maxReplicas: 6
+  cpu:
+    targetAverageUtilization: 80
+  memory:
+    targetAverageUtilization: 80
+resources:
+  limits:
+    cpu: 600m
+    memory: 1Gi
+  requests:
+    cpu: 200m
+    memory: 300Mi
+appSettings:
+  auth_audience: "recipe_management"
+  auth_authority: "http://localhost:7003/auth/realms/master"
+  auth_authorization_url: "http://localhost:3255/auth/realms/master/protocol/openid-connect/auth"
+  auth_token_url: "http://localhost:3255/auth/realms/master/protocol/openid-connect/token"
+  auth_client_id: "recipe_management.swagger"
+  auth_client_secret: "974d6f71-d41b-4601-9a7a-a33081f80687"
+  db_connection_string: "host=localhost;port=5432;database=articles;username=articles;password=articles"
+  rmq_host: "rabbitmq-headless"
+  rmq_virtual_host: "/"
+  rmq_username: "guest"
+  rmq_password: "guest"
+  rmq_port: "5672"
+  jaeger_host: "jaeger-agent"
+  jaeger_service_name: "services-backend-articles"

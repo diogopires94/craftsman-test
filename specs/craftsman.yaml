@@ -1,0 +1,499 @@
+DomainName: Articles
+AddGit: false
+Messages:
+  - Name: IArticleStockUpdate
+    Properties:
+      - Name: storeCode
+        Type: string
+      - Name: barcode
+        Type: string
+      - Name: reference
+        Type: string
+      - Name: stock
+        Type: int
+      - Name: warehouseCode
+        Type: string
+      - Name: reservedQuantity
+        Type: int
+  - Name: IArticles
+    Properties:
+      - Name: ArticlesJson
+        Type: string
+  - Name: IStocks
+    Properties:
+      - Name: StocksJson
+        Type: string
+  - Name: IOrderStock
+    Properties:
+      - Name: barcode
+        Type: string
+      - Name: reference
+        Type: string
+      - Name: quantity
+        Type: int
+BoundedContexts:
+  - ProjectName: ArticlesManager
+    Consumers:
+      - EndpointRegistrationMethodName: StocksUpdatesEndpoint
+        ConsumerName: ArticlesStocksConsumer
+        ExchangeName: maxiretail-stocks-requests
+        MessageName: IStocks
+        QueueName: articles-stocks-updates
+        ExchangeType: fanout
+      - EndpointRegistrationMethodName: StockUpdatesEndpoint
+        ConsumerName: ArticlesStockUpdatesConsumer
+        ExchangeName: maxiretail-stockupdates-requests
+        MessageName: IArticleStockUpdate
+        QueueName: articles-stock-updates
+        ExchangeType: fanout
+      - EndpointRegistrationMethodName: ArticlesSyncEndpoint
+        ConsumerName: ArticlesSyncConsumer
+        ExchangeName: maxiretail-articles-requests
+        MessageName: IArticles
+        QueueName: articles-sync
+        ExchangeType: fanout
+      - EndpointRegistrationMethodName: OrderStockEndpoint
+        ConsumerName: ArticlesOrderStockConsumer
+        ExchangeName: articles-requests
+        MessageName: IOrderStock
+        QueueName: articles-order-stock-sync
+        ExchangeType: fanout
+    Bus:
+      AddBus: true
+    Port: 5005
+    DbContext:
+      ContextName: ArticlesDbContext
+      DatabaseName: Articles
+      Provider: Postgres
+    Entities:
+      - Name: SubFamily
+        Plural: SubFamilies
+        Features:
+          - Type: AddRecord
+          - Type: GetRecord
+          - Type: GetList
+          - Type: UpdateRecord
+          - Type: DeleteRecord
+        Properties:
+          - Name: Code
+            Type: string
+            CanFilter: true
+            CanSort: true
+          - Name: Description
+            Type: string?
+            CanFilter: true
+            CanSort: true
+      - Name: Family
+        Plural: Families
+        Features:
+          - Type: AddRecord
+          - Type: GetRecord
+          - Type: GetList
+          - Type: UpdateRecord
+          - Type: DeleteRecord
+        Properties:
+          - Name: Code
+            Type: string
+            CanFilter: true
+            CanSort: true
+          - Name: Description
+            Type: string?
+            CanFilter: true
+            CanSort: true
+      - Name: Collection
+        Features:
+          - Type: AddRecord
+          - Type: GetRecord
+          - Type: GetList
+          - Type: UpdateRecord
+          - Type: DeleteRecord
+        Properties:
+          - Name: Code
+            Type: string
+            CanFilter: true
+            CanSort: true
+          - Name: Description
+            Type: string?
+            CanFilter: true
+            CanSort: true
+      - Name: Brand
+        Features:
+          - Type: AddRecord
+          - Type: GetRecord
+          - Type: GetList
+          - Type: UpdateRecord
+          - Type: DeleteRecord
+        Properties:
+          - Name: Code
+            Type: string
+            CanFilter: true
+            CanSort: true
+          - Name: Description
+            Type: string?
+            CanFilter: true
+            CanSort: true
+          - Name: ImageUrl
+            Type: string?
+            CanFilter: true
+            CanSort: true
+      - Name: Article
+        Features:
+          - Type: AddRecord
+          - Type: GetRecord
+          - Type: GetList
+          - Type: UpdateRecord
+          - Type: DeleteRecord
+        Properties:
+          - Name: InternalReference
+            Type: string
+            CanFilter: true
+            CanSort: true
+          - Name: SKU
+            Type: string
+            CanFilter: true
+            CanSort: true
+          - Name: Description
+            Type: string?
+            CanFilter: true
+            CanSort: true
+          - Name: Price
+            Type: double?
+            CanFilter: true
+            CanSort: true
+          - Name: PriceWithPromotion
+            Type: double?
+            CanFilter: true
+            CanSort: true
+          - Name: BrandId
+            Type: Guid?
+            ForeignEntityName: Brand
+            CanFilter: true
+            CanSort: true
+          - Name: FamilyId
+            Type: Guid?
+            ForeignEntityName: Family
+            ForeignEntityPlural: Families
+            CanFilter: true
+            CanSort: true
+          - Name: SubFamilyId
+            Type: Guid?
+            ForeignEntityName: SubFamily
+            ForeignEntityPlural: SubFamilies
+            CanFilter: true
+            CanSort: true
+          - Name: CollectionId
+            Type: Guid?
+            ForeignEntityName: Collection
+            CanFilter: true
+            CanSort: true
+          - Name: Generic1
+            Type: string?
+            CanFilter: true
+            CanSort: true
+          - Name: RowNumber
+            Type: string?
+            CanFilter: true
+            CanSort: true
+          - Name: MainArticleImageUrl
+            Type: string?
+            CanFilter: true
+            CanSort: true
+          - Name: Url
+            Type: string?
+            CanFilter: true
+            CanSort: true
+          - Name: MetaName
+            Type: string?
+            CanFilter: true
+            CanSort: true
+          - Name: MetaDescription
+            Type: string?
+            CanFilter: true
+            CanSort: true
+          - Name: IsLowStock
+            Type: bool
+            CanFilter: true
+            CanSort: true
+          - Name: IsOutOfStock
+            Type: bool
+            CanFilter: true
+            CanSort: true
+          - Name: IsPublished
+            Type: bool
+            CanFilter: true
+            CanSort: true
+          - Name: IsOutlet
+            Type: bool
+            CanFilter: true
+            CanSort: true
+      - Name: Barcode
+        Features:
+          - Type: AddRecord
+          - Type: GetRecord
+          - Type: GetList
+          - Type: UpdateRecord
+          - Type: DeleteRecord
+        Properties:
+          - Name: BarcodeValue
+            Type: string
+            CanFilter: true
+            CanSort: true
+          - Name: ArticleId
+            Type: Guid?
+            ForeignEntityName: Article
+          - Name: Size
+            Type: string?
+            CanFilter: true
+            CanSort: true
+          - Name: Size_Description
+            Type: string?
+            CanFilter: true
+            CanSort: true
+          - Name: Price
+            Type: double?
+            CanFilter: true
+            CanSort: true
+          - Name: Color_Code
+            Type: string?
+            CanFilter: true
+            CanSort: true
+          - Name: Color_Description
+            Type: string?
+            CanFilter: true
+            CanSort: true
+          - Name: StockQuantity
+            Type: int?
+            CanFilter: true
+            CanSort: true
+          - Name: ReservedQuantity
+            Type: int?
+            CanFilter: true
+            CanSort: true
+      - Name: ArticleImage
+        Features:
+          - Type: AddRecord
+          - Type: GetRecord
+          - Type: GetList
+          - Type: UpdateRecord
+          - Type: DeleteRecord
+        Properties:
+          - Name: ArticleId
+            Type: Guid?
+            ForeignEntityName: Article
+          - Name: url
+            Type: string?
+            CanFilter: true
+            CanSort: true
+      - Name: Promotion
+        Features:
+          - Type: AddRecord
+          - Type: GetRecord
+          - Type: GetList
+          - Type: UpdateRecord
+          - Type: DeleteRecord
+        Properties:
+          - Name: Name
+            Type: string
+            CanFilter: true
+            CanSort: true
+          - Name: Filter
+            Type: string
+            CanFilter: true
+            CanSort: true
+      - Name: ArticlePromotion
+        Features:
+          - Type: AddRecord
+          - Type: GetRecord
+          - Type: GetList
+          - Type: UpdateRecord
+          - Type: DeleteRecord
+        Properties:
+          - Name: ArticleId
+            Type: Guid?
+            ForeignEntityName: Article
+          - Name: Discount
+            Type: int
+            CanFilter: true
+            CanSort: true
+          - Name: PromotionId
+            Type: Guid?
+            ForeignEntityName: Promotion
+      - Name: Url
+        Features:
+          - Type: AddRecord
+          - Type: GetRecord
+          - Type: GetList
+          - Type: UpdateRecord
+          - Type: DeleteRecord
+        Properties:
+          - Name: UrlValue
+            Type: string
+            CanFilter: true
+            CanSort: true
+          - Name: PageTitle
+            Type: string
+            CanFilter: true
+            CanSort: true
+          - Name: MetaDescription
+            Type: string
+            CanFilter: true
+            CanSort: true
+          - Name: MetaName
+            Type: string
+            CanFilter: true
+            CanSort: true
+      - Name: UrlFilter
+        Features:
+          - Type: AddRecord
+          - Type: GetRecord
+          - Type: GetList
+          - Type: UpdateRecord
+          - Type: DeleteRecord
+        Properties:
+          - Name: UrlId
+            Type: Guid?
+            ForeignEntityName: Url
+            CanFilter: true
+            CanSort: true
+          - Name: FamilyId
+            Type: Guid?
+            ForeignEntityName: Family
+            ForeignEntityPlural: Families
+            CanFilter: true
+            CanSort: true
+          - Name: SubFamilyId
+            Type: Guid?
+            ForeignEntityName: SubFamily
+            ForeignEntityPlural: SubFamilies
+            CanFilter: true
+            CanSort: true
+          - Name: BrandId
+            Type: Guid?
+            ForeignEntityName: Brand
+            CanFilter: true
+            CanSort: true
+          - Name: CollectionId
+            Type: Guid?
+            ForeignEntityName: Collection
+            CanFilter: true
+            CanSort: true
+      - Name: HomePageHighlight
+        Features:
+          - Type: AddRecord
+          - Type: GetRecord
+          - Type: GetList
+          - Type: UpdateRecord
+          - Type: DeleteRecord
+        Properties:
+          - Name: ArticleId
+            Type: Guid?
+            ForeignEntityName: Article
+            CanFilter: true
+            CanSort: true
+          - Name: BrandId
+            Type: Guid?
+            ForeignEntityName: Brand
+            CanFilter: true
+            CanSort: true
+          - Name: CollectionId
+            Type: Guid?
+            ForeignEntityName: Collection
+            CanFilter: true
+            CanSort: true
+          - Name: Name
+            Type: string
+            CanFilter: true
+            CanSort: true
+          - Name: Order
+            Type: int?
+            CanFilter: true
+            CanSort: true
+      - Name: UserChart
+        Features:
+          - Type: AddRecord
+          - Type: GetRecord
+          - Type: GetList
+          - Type: UpdateRecord
+          - Type: DeleteRecord
+        Properties:
+          - Name: UserId
+            Type: Guid?
+            CanFilter: true
+            CanSort: true
+          - Name: articleId
+            Type: Guid?
+            ForeignEntityName: Article
+            CanFilter: true
+            CanSort: true
+          - Name: quantity
+            Type: int?
+            CanFilter: true
+            CanSort: true
+      - Name: SizeTable
+        Features:
+          - Type: AddRecord
+          - Type: GetRecord
+          - Type: GetList
+          - Type: UpdateRecord
+          - Type: DeleteRecord
+        Properties:
+          - Name: Name
+            Type: string
+            CanFilter: true
+            CanSort: true
+          - Name: FamilyId
+            Type: Guid?
+            ForeignEntityName: Family
+            ForeignEntityPlural: Families
+            CanFilter: true
+            CanSort: true
+          - Name: SubFamilyId
+            Type: Guid?
+            ForeignEntityName: SubFamily
+            ForeignEntityPlural: SubFamilies
+            CanFilter: true
+            CanSort: true
+      - Name: SizeTableLine
+        Features:
+          - Type: AddRecord
+          - Type: GetRecord
+          - Type: GetList
+          - Type: UpdateRecord
+          - Type: DeleteRecord
+        Properties:
+          - Name: SizeTableId
+            Type: Guid?
+            ForeignEntityName: SizeTable
+            CanFilter: true
+            CanSort: true
+          - Name: EU
+            Type: string
+            CanFilter: true
+            CanSort: true
+          - Name: US
+            Type: string
+            CanFilter: true
+            CanSort: true
+          - Name: UK
+            Type: string
+            CanFilter: true
+            CanSort: true
+          - Name: CM
+            Type: string
+            CanFilter: true
+            CanSort: true
+    SwaggerConfig:
+      Title: Articles API
+      Description: Our API uses a REST based design, leverages the JSON data format, and relies upon HTTPS for transport. We respond with meaningful HTTP response codes and if an error occurs, we include error details in the response body.
+      ApiContact:
+        Name: Diogo Pires
+        Email: diogo.pires@nter.pt
+        Url: https://www.nter.pt
+    Environment:
+      AuthSettings:
+        Authority: https://auth.dev.sportino.nter.pt/auth/realms/master
+        Audience: recipe_management
+        AuthorizationUrl: https://auth.dev.sportino.nter.pt/auth/realms/master/protocol/openid-connect/auth
+        TokenUrl: https://auth.dev.sportino.nter.pt/auth/realms/master/protocol/openid-connect/token
+        ClientId: sportino-app
+        ClientSecret: 974d6f71-d41b-4601-9a7a-a33081f80687

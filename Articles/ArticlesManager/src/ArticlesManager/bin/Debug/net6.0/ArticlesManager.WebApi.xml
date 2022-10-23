@@ -1,0 +1,1180 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ArticlesManager</name>
+    </assembly>
+    <members>
+        <member name="M:ArticlesManager.Controllers.v1.ArticleImagesController.AddArticleImage(ArticlesManager.Domain.ArticleImages.Dtos.ArticleImageForCreationDto)">
+            <summary>
+            Creates a new ArticleImage record.
+            </summary>
+            <response code="201">ArticleImage created.</response>
+            <response code="400">ArticleImage has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the ArticleImage.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.ArticleImagesController.GetArticleImage(System.Guid)">
+            <summary>
+            Gets a single ArticleImage by ID.
+            </summary>
+            <response code="200">ArticleImage record returned successfully.</response>
+            <response code="400">ArticleImage has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the ArticleImage.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.ArticleImagesController.GetArticleImages(ArticlesManager.Domain.ArticleImages.Dtos.ArticleImageParametersDto)">
+             <summary>
+             Gets a list of all ArticleImages.
+             </summary>
+             <response code="200">ArticleImage list returned successfully.</response>
+             <response code="400">ArticleImage has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the ArticleImage.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.ArticleImagesController.UpdateArticleImage(System.Guid,ArticlesManager.Domain.ArticleImages.Dtos.ArticleImageForUpdateDto)">
+            <summary>
+            Updates an entire existing ArticleImage.
+            </summary>
+            <response code="204">ArticleImage updated.</response>
+            <response code="400">ArticleImage has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the ArticleImage.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.ArticleImagesController.DeleteArticleImage(System.Guid)">
+            <summary>
+            Deletes an existing ArticleImage record.
+            </summary>
+            <response code="204">ArticleImage deleted.</response>
+            <response code="400">ArticleImage has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the ArticleImage.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.ArticlePromotionsController.AddArticlePromotion(ArticlesManager.Domain.ArticlePromotions.Dtos.ArticlePromotionForCreationDto)">
+            <summary>
+            Creates a new ArticlePromotion record.
+            </summary>
+            <response code="201">ArticlePromotion created.</response>
+            <response code="400">ArticlePromotion has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the ArticlePromotion.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.ArticlePromotionsController.GetArticlePromotion(System.Guid)">
+            <summary>
+            Gets a single ArticlePromotion by ID.
+            </summary>
+            <response code="200">ArticlePromotion record returned successfully.</response>
+            <response code="400">ArticlePromotion has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the ArticlePromotion.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.ArticlePromotionsController.GetArticlePromotions(ArticlesManager.Domain.ArticlePromotions.Dtos.ArticlePromotionParametersDto)">
+             <summary>
+             Gets a list of all ArticlePromotions.
+             </summary>
+             <response code="200">ArticlePromotion list returned successfully.</response>
+             <response code="400">ArticlePromotion has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the ArticlePromotion.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.ArticlePromotionsController.UpdateArticlePromotion(System.Guid,ArticlesManager.Domain.ArticlePromotions.Dtos.ArticlePromotionForUpdateDto)">
+            <summary>
+            Updates an entire existing ArticlePromotion.
+            </summary>
+            <response code="204">ArticlePromotion updated.</response>
+            <response code="400">ArticlePromotion has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the ArticlePromotion.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.ArticlePromotionsController.DeleteArticlePromotion(System.Guid)">
+            <summary>
+            Deletes an existing ArticlePromotion record.
+            </summary>
+            <response code="204">ArticlePromotion deleted.</response>
+            <response code="400">ArticlePromotion has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the ArticlePromotion.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.ArticlesController.AddArticle(ArticlesManager.Domain.Articles.Dtos.ArticleForCreationDto)">
+            <summary>
+            Creates a new Article record.
+            </summary>
+            <response code="201">Article created.</response>
+            <response code="400">Article has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Article.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.ArticlesController.GetArticle(System.Guid)">
+            <summary>
+            Gets a single Article by ID.
+            </summary>
+            <response code="200">Article record returned successfully.</response>
+            <response code="400">Article has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Article.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.ArticlesController.GetArticles(ArticlesManager.Domain.Articles.Dtos.ArticleParametersDto)">
+             <summary>
+             Gets a list of all Articles.
+             </summary>
+             <response code="200">Article list returned successfully.</response>
+             <response code="400">Article has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the Article.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.ArticlesController.UpdateArticle(System.Guid,ArticlesManager.Domain.Articles.Dtos.ArticleForUpdateDto)">
+            <summary>
+            Updates an entire existing Article.
+            </summary>
+            <response code="204">Article updated.</response>
+            <response code="400">Article has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Article.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.ArticlesController.DeleteArticle(System.Guid)">
+            <summary>
+            Deletes an existing Article record.
+            </summary>
+            <response code="204">Article deleted.</response>
+            <response code="400">Article has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Article.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.BarcodesController.AddBarcode(ArticlesManager.Domain.Barcodes.Dtos.BarcodeForCreationDto)">
+            <summary>
+            Creates a new Barcode record.
+            </summary>
+            <response code="201">Barcode created.</response>
+            <response code="400">Barcode has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Barcode.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.BarcodesController.GetBarcode(System.Guid)">
+            <summary>
+            Gets a single Barcode by ID.
+            </summary>
+            <response code="200">Barcode record returned successfully.</response>
+            <response code="400">Barcode has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Barcode.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.BarcodesController.GetBarcodes(ArticlesManager.Domain.Barcodes.Dtos.BarcodeParametersDto)">
+             <summary>
+             Gets a list of all Barcodes.
+             </summary>
+             <response code="200">Barcode list returned successfully.</response>
+             <response code="400">Barcode has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the Barcode.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.BarcodesController.UpdateBarcode(System.Guid,ArticlesManager.Domain.Barcodes.Dtos.BarcodeForUpdateDto)">
+            <summary>
+            Updates an entire existing Barcode.
+            </summary>
+            <response code="204">Barcode updated.</response>
+            <response code="400">Barcode has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Barcode.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.BarcodesController.DeleteBarcode(System.Guid)">
+            <summary>
+            Deletes an existing Barcode record.
+            </summary>
+            <response code="204">Barcode deleted.</response>
+            <response code="400">Barcode has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Barcode.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.BrandsController.AddBrand(ArticlesManager.Domain.Brands.Dtos.BrandForCreationDto)">
+            <summary>
+            Creates a new Brand record.
+            </summary>
+            <response code="201">Brand created.</response>
+            <response code="400">Brand has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Brand.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.BrandsController.GetBrand(System.Guid)">
+            <summary>
+            Gets a single Brand by ID.
+            </summary>
+            <response code="200">Brand record returned successfully.</response>
+            <response code="400">Brand has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Brand.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.BrandsController.GetBrands(ArticlesManager.Domain.Brands.Dtos.BrandParametersDto)">
+             <summary>
+             Gets a list of all Brands.
+             </summary>
+             <response code="200">Brand list returned successfully.</response>
+             <response code="400">Brand has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the Brand.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.BrandsController.UpdateBrand(System.Guid,ArticlesManager.Domain.Brands.Dtos.BrandForUpdateDto)">
+            <summary>
+            Updates an entire existing Brand.
+            </summary>
+            <response code="204">Brand updated.</response>
+            <response code="400">Brand has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Brand.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.BrandsController.DeleteBrand(System.Guid)">
+            <summary>
+            Deletes an existing Brand record.
+            </summary>
+            <response code="204">Brand deleted.</response>
+            <response code="400">Brand has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Brand.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.CollectionsController.AddCollection(ArticlesManager.Domain.Collections.Dtos.CollectionForCreationDto)">
+            <summary>
+            Creates a new Collection record.
+            </summary>
+            <response code="201">Collection created.</response>
+            <response code="400">Collection has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Collection.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.CollectionsController.GetCollection(System.Guid)">
+            <summary>
+            Gets a single Collection by ID.
+            </summary>
+            <response code="200">Collection record returned successfully.</response>
+            <response code="400">Collection has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Collection.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.CollectionsController.GetCollections(ArticlesManager.Domain.Collections.Dtos.CollectionParametersDto)">
+             <summary>
+             Gets a list of all Collections.
+             </summary>
+             <response code="200">Collection list returned successfully.</response>
+             <response code="400">Collection has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the Collection.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.CollectionsController.UpdateCollection(System.Guid,ArticlesManager.Domain.Collections.Dtos.CollectionForUpdateDto)">
+            <summary>
+            Updates an entire existing Collection.
+            </summary>
+            <response code="204">Collection updated.</response>
+            <response code="400">Collection has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Collection.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.CollectionsController.DeleteCollection(System.Guid)">
+            <summary>
+            Deletes an existing Collection record.
+            </summary>
+            <response code="204">Collection deleted.</response>
+            <response code="400">Collection has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Collection.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.FamiliesController.AddFamily(ArticlesManager.Domain.Families.Dtos.FamilyForCreationDto)">
+            <summary>
+            Creates a new Family record.
+            </summary>
+            <response code="201">Family created.</response>
+            <response code="400">Family has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Family.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.FamiliesController.GetFamily(System.Guid)">
+            <summary>
+            Gets a single Family by ID.
+            </summary>
+            <response code="200">Family record returned successfully.</response>
+            <response code="400">Family has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Family.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.FamiliesController.GetFamilies(ArticlesManager.Domain.Families.Dtos.FamilyParametersDto)">
+             <summary>
+             Gets a list of all Families.
+             </summary>
+             <response code="200">Family list returned successfully.</response>
+             <response code="400">Family has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the Family.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.FamiliesController.UpdateFamily(System.Guid,ArticlesManager.Domain.Families.Dtos.FamilyForUpdateDto)">
+            <summary>
+            Updates an entire existing Family.
+            </summary>
+            <response code="204">Family updated.</response>
+            <response code="400">Family has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Family.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.FamiliesController.DeleteFamily(System.Guid)">
+            <summary>
+            Deletes an existing Family record.
+            </summary>
+            <response code="204">Family deleted.</response>
+            <response code="400">Family has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Family.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.HomePageHighlightsController.AddHomePageHighlight(ArticlesManager.Domain.HomePageHighlights.Dtos.HomePageHighlightForCreationDto)">
+            <summary>
+            Creates a new HomePageHighlight record.
+            </summary>
+            <response code="201">HomePageHighlight created.</response>
+            <response code="400">HomePageHighlight has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the HomePageHighlight.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.HomePageHighlightsController.GetHomePageHighlight(System.Guid)">
+            <summary>
+            Gets a single HomePageHighlight by ID.
+            </summary>
+            <response code="200">HomePageHighlight record returned successfully.</response>
+            <response code="400">HomePageHighlight has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the HomePageHighlight.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.HomePageHighlightsController.GetHomePageHighlights(ArticlesManager.Domain.HomePageHighlights.Dtos.HomePageHighlightParametersDto)">
+             <summary>
+             Gets a list of all HomePageHighlights.
+             </summary>
+             <response code="200">HomePageHighlight list returned successfully.</response>
+             <response code="400">HomePageHighlight has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the HomePageHighlight.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.HomePageHighlightsController.UpdateHomePageHighlight(System.Guid,ArticlesManager.Domain.HomePageHighlights.Dtos.HomePageHighlightForUpdateDto)">
+            <summary>
+            Updates an entire existing HomePageHighlight.
+            </summary>
+            <response code="204">HomePageHighlight updated.</response>
+            <response code="400">HomePageHighlight has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the HomePageHighlight.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.HomePageHighlightsController.DeleteHomePageHighlight(System.Guid)">
+            <summary>
+            Deletes an existing HomePageHighlight record.
+            </summary>
+            <response code="204">HomePageHighlight deleted.</response>
+            <response code="400">HomePageHighlight has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the HomePageHighlight.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.PromotionsController.AddPromotion(ArticlesManager.Domain.Promotions.Dtos.PromotionForCreationDto)">
+            <summary>
+            Creates a new Promotion record.
+            </summary>
+            <response code="201">Promotion created.</response>
+            <response code="400">Promotion has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Promotion.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.PromotionsController.GetPromotion(System.Guid)">
+            <summary>
+            Gets a single Promotion by ID.
+            </summary>
+            <response code="200">Promotion record returned successfully.</response>
+            <response code="400">Promotion has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Promotion.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.PromotionsController.GetPromotions(ArticlesManager.Domain.Promotions.Dtos.PromotionParametersDto)">
+             <summary>
+             Gets a list of all Promotions.
+             </summary>
+             <response code="200">Promotion list returned successfully.</response>
+             <response code="400">Promotion has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the Promotion.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.PromotionsController.UpdatePromotion(System.Guid,ArticlesManager.Domain.Promotions.Dtos.PromotionForUpdateDto)">
+            <summary>
+            Updates an entire existing Promotion.
+            </summary>
+            <response code="204">Promotion updated.</response>
+            <response code="400">Promotion has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Promotion.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.PromotionsController.DeletePromotion(System.Guid)">
+            <summary>
+            Deletes an existing Promotion record.
+            </summary>
+            <response code="204">Promotion deleted.</response>
+            <response code="400">Promotion has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Promotion.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.RolePermissionsController.GetRolePermissions(ArticlesManager.Domain.RolePermissions.Dtos.RolePermissionParametersDto)">
+             <summary>
+             Gets a list of all RolePermissions.
+             </summary>
+             <response code="200">RolePermission list returned successfully.</response>
+             <response code="400">RolePermission has missing/invalid values.</response>
+             <response code="401">This request was not able to be authenticated.</response>
+             <response code="403">The required permissions to access this resource were not present in the given request.</response>
+             <response code="500">There was an error on the server while creating the RolePermission.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.RolePermissionsController.GetRolePermission(System.Guid)">
+            <summary>
+            Gets a single RolePermission by ID.
+            </summary>
+            <response code="200">RolePermission record returned successfully.</response>
+            <response code="400">RolePermission has missing/invalid values.</response>
+            <response code="401">This request was not able to be authenticated.</response>
+            <response code="403">The required permissions to access this resource were not present in the given request.</response>
+            <response code="500">There was an error on the server while creating the RolePermission.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.RolePermissionsController.AddRolePermission(ArticlesManager.Domain.RolePermissions.Dtos.RolePermissionForCreationDto)">
+            <summary>
+            Creates a new RolePermission record.
+            </summary>
+            <response code="201">RolePermission created.</response>
+            <response code="400">RolePermission has missing/invalid values.</response>
+            <response code="401">This request was not able to be authenticated.</response>
+            <response code="403">The required permissions to access this resource were not present in the given request.</response>
+            <response code="500">There was an error on the server while creating the RolePermission.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.RolePermissionsController.UpdateRolePermission(System.Guid,ArticlesManager.Domain.RolePermissions.Dtos.RolePermissionForUpdateDto)">
+            <summary>
+            Updates an entire existing RolePermission.
+            </summary>
+            <response code="204">RolePermission updated.</response>
+            <response code="400">RolePermission has missing/invalid values.</response>
+            <response code="401">This request was not able to be authenticated.</response>
+            <response code="403">The required permissions to access this resource were not present in the given request.</response>
+            <response code="500">There was an error on the server while creating the RolePermission.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.RolePermissionsController.DeleteRolePermission(System.Guid)">
+            <summary>
+            Deletes an existing RolePermission record.
+            </summary>
+            <response code="204">RolePermission deleted.</response>
+            <response code="400">RolePermission has missing/invalid values.</response>
+            <response code="401">This request was not able to be authenticated.</response>
+            <response code="403">The required permissions to access this resource were not present in the given request.</response>
+            <response code="500">There was an error on the server while creating the RolePermission.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.SizeTableLinesController.AddSizeTableLine(ArticlesManager.Domain.SizeTableLines.Dtos.SizeTableLineForCreationDto)">
+            <summary>
+            Creates a new SizeTableLine record.
+            </summary>
+            <response code="201">SizeTableLine created.</response>
+            <response code="400">SizeTableLine has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SizeTableLine.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.SizeTableLinesController.GetSizeTableLine(System.Guid)">
+            <summary>
+            Gets a single SizeTableLine by ID.
+            </summary>
+            <response code="200">SizeTableLine record returned successfully.</response>
+            <response code="400">SizeTableLine has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SizeTableLine.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.SizeTableLinesController.GetSizeTableLines(ArticlesManager.Domain.SizeTableLines.Dtos.SizeTableLineParametersDto)">
+             <summary>
+             Gets a list of all SizeTableLines.
+             </summary>
+             <response code="200">SizeTableLine list returned successfully.</response>
+             <response code="400">SizeTableLine has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the SizeTableLine.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.SizeTableLinesController.UpdateSizeTableLine(System.Guid,ArticlesManager.Domain.SizeTableLines.Dtos.SizeTableLineForUpdateDto)">
+            <summary>
+            Updates an entire existing SizeTableLine.
+            </summary>
+            <response code="204">SizeTableLine updated.</response>
+            <response code="400">SizeTableLine has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SizeTableLine.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.SizeTableLinesController.DeleteSizeTableLine(System.Guid)">
+            <summary>
+            Deletes an existing SizeTableLine record.
+            </summary>
+            <response code="204">SizeTableLine deleted.</response>
+            <response code="400">SizeTableLine has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SizeTableLine.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.SizeTablesController.AddSizeTable(ArticlesManager.Domain.SizeTables.Dtos.SizeTableForCreationDto)">
+            <summary>
+            Creates a new SizeTable record.
+            </summary>
+            <response code="201">SizeTable created.</response>
+            <response code="400">SizeTable has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SizeTable.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.SizeTablesController.GetSizeTable(System.Guid)">
+            <summary>
+            Gets a single SizeTable by ID.
+            </summary>
+            <response code="200">SizeTable record returned successfully.</response>
+            <response code="400">SizeTable has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SizeTable.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.SizeTablesController.GetSizeTables(ArticlesManager.Domain.SizeTables.Dtos.SizeTableParametersDto)">
+             <summary>
+             Gets a list of all SizeTables.
+             </summary>
+             <response code="200">SizeTable list returned successfully.</response>
+             <response code="400">SizeTable has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the SizeTable.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.SizeTablesController.UpdateSizeTable(System.Guid,ArticlesManager.Domain.SizeTables.Dtos.SizeTableForUpdateDto)">
+            <summary>
+            Updates an entire existing SizeTable.
+            </summary>
+            <response code="204">SizeTable updated.</response>
+            <response code="400">SizeTable has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SizeTable.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.SizeTablesController.DeleteSizeTable(System.Guid)">
+            <summary>
+            Deletes an existing SizeTable record.
+            </summary>
+            <response code="204">SizeTable deleted.</response>
+            <response code="400">SizeTable has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SizeTable.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.SubFamiliesController.AddSubFamily(ArticlesManager.Domain.SubFamilies.Dtos.SubFamilyForCreationDto)">
+            <summary>
+            Creates a new SubFamily record.
+            </summary>
+            <response code="201">SubFamily created.</response>
+            <response code="400">SubFamily has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SubFamily.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.SubFamiliesController.GetSubFamily(System.Guid)">
+            <summary>
+            Gets a single SubFamily by ID.
+            </summary>
+            <response code="200">SubFamily record returned successfully.</response>
+            <response code="400">SubFamily has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SubFamily.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.SubFamiliesController.GetSubFamilies(ArticlesManager.Domain.SubFamilies.Dtos.SubFamilyParametersDto)">
+             <summary>
+             Gets a list of all SubFamilies.
+             </summary>
+             <response code="200">SubFamily list returned successfully.</response>
+             <response code="400">SubFamily has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the SubFamily.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.SubFamiliesController.UpdateSubFamily(System.Guid,ArticlesManager.Domain.SubFamilies.Dtos.SubFamilyForUpdateDto)">
+            <summary>
+            Updates an entire existing SubFamily.
+            </summary>
+            <response code="204">SubFamily updated.</response>
+            <response code="400">SubFamily has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SubFamily.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.SubFamiliesController.DeleteSubFamily(System.Guid)">
+            <summary>
+            Deletes an existing SubFamily record.
+            </summary>
+            <response code="204">SubFamily deleted.</response>
+            <response code="400">SubFamily has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SubFamily.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.UrlFiltersController.AddUrlFilter(ArticlesManager.Domain.UrlFilters.Dtos.UrlFilterForCreationDto)">
+            <summary>
+            Creates a new UrlFilter record.
+            </summary>
+            <response code="201">UrlFilter created.</response>
+            <response code="400">UrlFilter has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the UrlFilter.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.UrlFiltersController.GetUrlFilter(System.Guid)">
+            <summary>
+            Gets a single UrlFilter by ID.
+            </summary>
+            <response code="200">UrlFilter record returned successfully.</response>
+            <response code="400">UrlFilter has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the UrlFilter.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.UrlFiltersController.GetUrlFilters(ArticlesManager.Domain.UrlFilters.Dtos.UrlFilterParametersDto)">
+             <summary>
+             Gets a list of all UrlFilters.
+             </summary>
+             <response code="200">UrlFilter list returned successfully.</response>
+             <response code="400">UrlFilter has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the UrlFilter.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.UrlFiltersController.UpdateUrlFilter(System.Guid,ArticlesManager.Domain.UrlFilters.Dtos.UrlFilterForUpdateDto)">
+            <summary>
+            Updates an entire existing UrlFilter.
+            </summary>
+            <response code="204">UrlFilter updated.</response>
+            <response code="400">UrlFilter has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the UrlFilter.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.UrlFiltersController.DeleteUrlFilter(System.Guid)">
+            <summary>
+            Deletes an existing UrlFilter record.
+            </summary>
+            <response code="204">UrlFilter deleted.</response>
+            <response code="400">UrlFilter has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the UrlFilter.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.UrlsController.AddUrl(ArticlesManager.Domain.Urls.Dtos.UrlForCreationDto)">
+            <summary>
+            Creates a new Url record.
+            </summary>
+            <response code="201">Url created.</response>
+            <response code="400">Url has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Url.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.UrlsController.GetUrl(System.Guid)">
+            <summary>
+            Gets a single Url by ID.
+            </summary>
+            <response code="200">Url record returned successfully.</response>
+            <response code="400">Url has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Url.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.UrlsController.GetUrls(ArticlesManager.Domain.Urls.Dtos.UrlParametersDto)">
+             <summary>
+             Gets a list of all Urls.
+             </summary>
+             <response code="200">Url list returned successfully.</response>
+             <response code="400">Url has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the Url.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.UrlsController.UpdateUrl(System.Guid,ArticlesManager.Domain.Urls.Dtos.UrlForUpdateDto)">
+            <summary>
+            Updates an entire existing Url.
+            </summary>
+            <response code="204">Url updated.</response>
+            <response code="400">Url has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Url.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.UrlsController.DeleteUrl(System.Guid)">
+            <summary>
+            Deletes an existing Url record.
+            </summary>
+            <response code="204">Url deleted.</response>
+            <response code="400">Url has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the Url.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.UrlsWithProductsController.UrlsWithProducts(ArticlesManager.Domain.UrlsWithProducts.Dtos.UrlsWithProductsParametersDto)">
+             <summary>
+             Gets a list of all the articles for a givel url.
+             </summary>
+             <response code="200">Articles list returned successfully.</response>
+             <response code="400">Articles has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the Articles.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.UrlWithFiltersController.UrlFilters(ArticlesManager.Domain.UrlsWithFilters.Dtos.UrlsWithFiltersParametersDto)">
+             <summary>
+             Gets a list of all the filters for a givel url.
+             </summary>
+             <response code="200">Filters list returned successfully.</response>
+             <response code="400">Filters has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the Filters.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.UserChartsController.AddUserChart(ArticlesManager.Domain.UserCharts.Dtos.UserChartForCreationDto)">
+            <summary>
+            Creates a new UserChart record.
+            </summary>
+            <response code="201">UserChart created.</response>
+            <response code="400">UserChart has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the UserChart.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.UserChartsController.GetUserChart(System.Guid)">
+            <summary>
+            Gets a single UserChart by ID.
+            </summary>
+            <response code="200">UserChart record returned successfully.</response>
+            <response code="400">UserChart has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the UserChart.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.UserChartsController.GetUserCharts(ArticlesManager.Domain.UserCharts.Dtos.UserChartParametersDto)">
+             <summary>
+             Gets a list of all UserCharts.
+             </summary>
+             <response code="200">UserChart list returned successfully.</response>
+             <response code="400">UserChart has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the UserChart.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.UserChartsController.UpdateUserChart(System.Guid,ArticlesManager.Domain.UserCharts.Dtos.UserChartForUpdateDto)">
+            <summary>
+            Updates an entire existing UserChart.
+            </summary>
+            <response code="204">UserChart updated.</response>
+            <response code="400">UserChart has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the UserChart.</response>
+        </member>
+        <member name="M:ArticlesManager.Controllers.v1.UserChartsController.DeleteUserChart(System.Guid)">
+            <summary>
+            Deletes an existing UserChart record.
+            </summary>
+            <response code="204">UserChart deleted.</response>
+            <response code="400">UserChart has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the UserChart.</response>
+        </member>
+        <member name="M:ArticlesManager.Databases.EntityConfigurations.ArticleConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{ArticlesManager.Domain.Articles.Article})">
+            <summary>
+            The database configuration for Articles. 
+            </summary>
+        </member>
+        <member name="M:ArticlesManager.Databases.EntityConfigurations.ArticleImageConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{ArticlesManager.Domain.ArticleImages.ArticleImage})">
+            <summary>
+            The database configuration for ArticleImages. 
+            </summary>
+        </member>
+        <member name="M:ArticlesManager.Databases.EntityConfigurations.ArticlePromotionConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{ArticlesManager.Domain.ArticlePromotions.ArticlePromotion})">
+            <summary>
+            The database configuration for ArticlePromotions. 
+            </summary>
+        </member>
+        <member name="M:ArticlesManager.Databases.EntityConfigurations.BarcodeConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{ArticlesManager.Domain.Barcodes.Barcode})">
+            <summary>
+            The database configuration for Barcodes. 
+            </summary>
+        </member>
+        <member name="M:ArticlesManager.Databases.EntityConfigurations.BrandConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{ArticlesManager.Domain.Brands.Brand})">
+            <summary>
+            The database configuration for Brands. 
+            </summary>
+        </member>
+        <member name="M:ArticlesManager.Databases.EntityConfigurations.CollectionConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{ArticlesManager.Domain.Collections.Collection})">
+            <summary>
+            The database configuration for Collections. 
+            </summary>
+        </member>
+        <member name="M:ArticlesManager.Databases.EntityConfigurations.FamilyConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{ArticlesManager.Domain.Families.Family})">
+            <summary>
+            The database configuration for Families. 
+            </summary>
+        </member>
+        <member name="M:ArticlesManager.Databases.EntityConfigurations.HomePageHighlightConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{ArticlesManager.Domain.HomePageHighlights.HomePageHighlight})">
+            <summary>
+            The database configuration for HomePageHighlights. 
+            </summary>
+        </member>
+        <member name="M:ArticlesManager.Databases.EntityConfigurations.PromotionConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{ArticlesManager.Domain.Promotions.Promotion})">
+            <summary>
+            The database configuration for Promotions. 
+            </summary>
+        </member>
+        <member name="M:ArticlesManager.Databases.EntityConfigurations.SizeTableConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{ArticlesManager.Domain.SizeTables.SizeTable})">
+            <summary>
+            The database configuration for SizeTables. 
+            </summary>
+        </member>
+        <member name="M:ArticlesManager.Databases.EntityConfigurations.SizeTableLineConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{ArticlesManager.Domain.SizeTableLines.SizeTableLine})">
+            <summary>
+            The database configuration for SizeTableLines. 
+            </summary>
+        </member>
+        <member name="M:ArticlesManager.Databases.EntityConfigurations.SubFamilyConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{ArticlesManager.Domain.SubFamilies.SubFamily})">
+            <summary>
+            The database configuration for SubFamilies. 
+            </summary>
+        </member>
+        <member name="M:ArticlesManager.Databases.EntityConfigurations.UrlConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{ArticlesManager.Domain.Urls.Url})">
+            <summary>
+            The database configuration for Urls. 
+            </summary>
+        </member>
+        <member name="M:ArticlesManager.Databases.EntityConfigurations.UrlFilterConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{ArticlesManager.Domain.UrlFilters.UrlFilter})">
+            <summary>
+            The database configuration for UrlFilters. 
+            </summary>
+        </member>
+        <member name="M:ArticlesManager.Databases.EntityConfigurations.UserChartConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{ArticlesManager.Domain.UserCharts.UserChart})">
+            <summary>
+            The database configuration for UserCharts. 
+            </summary>
+        </member>
+        <member name="P:ArticlesManager.Domain.Addresses.Address.Line1">
+            <summary>
+            Address line 1 (e.g., street, PO Box, or company name).
+            </summary>
+        </member>
+        <member name="P:ArticlesManager.Domain.Addresses.Address.Line2">
+            <summary>
+            Address line 2 (e.g., apartment, suite, unit, or building).
+            </summary>
+        </member>
+        <member name="P:ArticlesManager.Domain.Addresses.Address.City">
+            <summary>
+            City, district, suburb, town, or village.
+            </summary>
+        </member>
+        <member name="P:ArticlesManager.Domain.Addresses.Address.State">
+            <summary>
+            State, county, province, or region.
+            </summary>
+        </member>
+        <member name="P:ArticlesManager.Domain.Addresses.Address.PostalCode">
+            <summary>
+            ZIP or postal code.
+            </summary>
+        </member>
+        <member name="P:ArticlesManager.Domain.Addresses.Address.Country">
+            <summary>
+            Two-letter country code <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">(ISO 3166-1 alpha-2)</a>.
+            </summary>
+        </member>
+        <member name="M:ArticlesManager.Extensions.Services.WebAppServiceConfiguration.AddBoundaryServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Reflection.Assembly[])">
+            <summary>
+            Registers all services in the assembly of the given interface.
+            </summary>
+        </member>
+    </members>
+</doc>

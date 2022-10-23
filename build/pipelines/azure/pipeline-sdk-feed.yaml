@@ -1,0 +1,50 @@
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - /src/Backend/Services/StoreManagement/StoreManagement.Sdk/*
+
+resources:
+- repo: self
+
+variables:
+  buildConfiguration: 'Release'
+
+
+stages:
+- stage: BuildAndPush
+  displayName: Build and push Nugget package
+  jobs:
+  - job: BuildAndPush
+    displayName: Package and Push Nugget package
+    pool: Default
+    steps:
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet build'
+      inputs:
+        command: 'build'
+        arguments: '--configuration $(buildConfiguration)'
+        projects: '$(repositoryPath)'
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet pack'
+      inputs:
+        command: pack
+        packagesToPack: '$(repositoryPath)'
+        versioningScheme: byEnvVar
+        versionEnvVar: PackageVersion
+        arguments: --output $(Build.ArtifactStagingDirectory)/
+    - task: NuGetAuthenticate@1
+      displayName: 'NuGet Authenticate'
+      inputs:
+        forceReinstallCredentialProvider: true
+    - task: NuGetCommand@2
+      displayName: 'NuGet push'
+      inputs:
+        command: push
+        feedsToUse: 'select'
+        nuGetFeedType: 'internal'
+        publishVstsFeed: 'nterconsulting'
+        allowPackageConflicts: true
+        packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'

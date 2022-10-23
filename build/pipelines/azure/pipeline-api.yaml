@@ -1,0 +1,63 @@
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - /src/Backend/Services/Articles/Articles/*
+    - /src/Backend/Services/Articles/deploy/k8s/*
+
+resources:
+- repo: self
+
+variables:
+  dockerFilePath: '$(dockerFilePathInput)'
+  tag: '$(Build.BuildId)'
+  imageName: '$(imageNameInput)'
+  repositoryPath: '$(repositoryPathInput)'
+  buildPath: '$(buildPathInput)'
+  imageRepositoryURL: '$(imageRepositoryURLInput)'
+  imageRepositoryProject: '$(imageRepositoryProjectInput)'
+
+stages:
+- stage: Build
+  displayName: Build image and chart
+  jobs:
+  - job: Build
+    displayName: Build
+    pool: Default
+    steps:
+    - task: CmdLine@2
+      displayName: Build and push container image
+      inputs:
+        script: |
+          docker build -f $(dockerFilePath) $(buildPath) -t $(imageRepositoryURL)/$(imageRepositoryProject)/$(imageName):$(tag)
+          docker push $(imageRepositoryURL)/$(imageRepositoryProject)/$(imageName):$(tag)
+        workingDirectory: '$(Build.SourcesDirectory)'
+    - task: CmdLine@2
+      displayName: Replace values in helm chart
+      inputs:
+        script: |
+          sed -i 's/"1"/$(tag)-helm/g' $(repositoryPath)/deploy/k8s/Chart.yaml
+          sed -i 's/#(tag)/$(tag)/g' $(repositoryPath)/deploy/k8s/values-dev.yaml
+          sed -i 's/#(tag)/$(tag)/g' $(repositoryPath)/deploy/k8s/values-tst.yaml
+          sed -i 's/#(tag)/$(tag)/g' $(repositoryPath)/deploy/k8s/values-prd.yaml
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.SourcesDirectory)/$(repositoryPath)/deploy/'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
+    - task: CmdLine@2
+      displayName: Save and push helm chart
+      name: 
+      inputs:
+        script: |
+          export HELM_EXPERIMENTAL_OCI=1
+          helm registry login -u builder -p TechPires1 $(imageRepositoryURL)
+          helm package $(repositoryPath)/deploy/k8s/
+          helm push $(imageName)-$(tag)-helm.tgz oci://$(imageRepositoryURL)/$(imageRepositoryProject)
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.SourcesDirectory)/$(imageName)-$(tag)-helm.tgz'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
